@@ -1,28 +1,22 @@
 <template>
   <div class="row">
     <div class="col-lg-10 m-auto">
-      <card :title="$t('home')">
-        {{ $t('you_are_logged_in') }}
-      </card>
+      <gallery />
     </div>
   </div>
 </template>
 
 <script>
-// import axios from 'axios'
+import Gallery from "~/components/Gallery";
 export default {
-  middleware: 'auth',
+  middleware: "auth",
 
-  // async asyncData () {
-  //   const { data: projects } = await axios.get('/api/projects')
+  components: {
+    Gallery,
+  },
 
-  //   return {
-  //     projects
-  //   }
-  // },
-
-  metaInfo () {
-    return { title: this.$t('home') }
-  }
-}
+  metaInfo() {
+    return { title: this.$t("home") };
+  },
+};
 </script>

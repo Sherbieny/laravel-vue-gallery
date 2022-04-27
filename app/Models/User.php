@@ -24,6 +24,8 @@ class User extends Authenticatable implements JWTSubject //, MustVerifyEmail
         'name',
         'email',
         'password',
+        'favourites',
+        'fav_count'
     ];
 
     /**
@@ -112,5 +114,36 @@ class User extends Authenticatable implements JWTSubject //, MustVerifyEmail
     public function getJWTCustomClaims()
     {
         return [];
+    }
+
+    public function getFavCount()
+    {
+        return $this->getAttributeValue('fav_count');
+    }
+
+    public function setFavCount()
+    {
+        $this->setAttribute('fav_count', count($this->getFavourites()));
+    }
+
+    public function setFavourite($imageId)
+    {
+        $favourites = $this->getFavourites();
+        $favourites[$imageId] = $imageId;
+        $this->setAttribute('favourites', json_encode($favourites));
+    }
+
+    public function getFavourites()
+    {
+        $favourites = $this->getAttributeValue('favourites');
+
+        return empty($favourites) ? [] : json_decode($favourites, true);
+    }
+
+    public function removeFavourite($imageId)
+    {
+        $favourites = $this->getFavourites();
+        unset($favourites[$imageId]);
+        $this->setAttribute('favourites', json_encode($favourites));
     }
 }
