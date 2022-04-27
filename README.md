@@ -30,8 +30,7 @@
 
 -   clone the project
 -   create/edit `.env` file with your database configuration
--   `php artisan key:generate`
--   `php artisan jwt:secret`
+-   `composer install`
 -   `php artisan migrate`
 -   `npm install`
 
@@ -39,8 +38,8 @@
 
 -   Development
     -   `npm run dev`
-    -   OR `npm run watch` for continues syncing during development
 -   Production
     -   `npm run build`
+-   `php artisan serve`
 
 ##### Please refer to the original project for more information
